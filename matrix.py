@@ -20,10 +20,18 @@ class Matrix(object):
 	def transpose(self):
 		#Task5
 		# transpose the matrix
+		list_indices = self.indices_generator(self)
+		list_transpose = []
+		for tuples in list_indices :
+			list_transpose.insert((tuples[1],tuples[0]))
+		
+
 
 	def __str__(self):
 		#Task6
 		# return the string representation
+		
+
 
 """
 The output of those lines:
