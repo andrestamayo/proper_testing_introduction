@@ -15,6 +15,23 @@ class Matrix(object):
 	def __add__(self, m):
 		#Task4
 		# must use apply (task3)
+	"""mat1= [[1,2],[3,4],[5,6],[7,8]]
+	mat2=[[9,10],[11,12],[13,14],[15,16]]
+
+	def __add__(self, m):
+		res = []
+		for rrow in self:
+			print res
+			res[rrow]=self[rrow]
+			for ccol in self[rrow]:
+				res[rrow][ccol]=self[rrow][ccol]
+				res[rrow][ccol]=self[rrow][ccol]+m[rrow][ccol]
+		print res
+		return res
+
+
+	print (mat1).__add__(mat2)
+	"""
 
 	@property
 	def transpose(self):
