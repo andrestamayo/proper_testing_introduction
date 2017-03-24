@@ -20,17 +20,24 @@ class Matrix(object):
 	def transpose(self):
 		#Task5
 		# transpose the matrix
-		list_indices = self.indices_generator(self)
-		list_transpose = []
-		for tuples in list_indices :
-			list_transpose.insert((tuples[1],tuples[0]))
-		
+		m = self
+		for tuples in self.indices_generator() :
+			m.rows[tuples[0]][tuples[1]]=self.rows[tuples[1]][tuples[0]]
+		return m
 
 
 	def __str__(self):
 		#Task6
 		# return the string representation
-		
+		i=0 #row index
+		print('| ')
+		for tuples in self.indices_generator() :
+			if tuples[0]==i:
+				print(" {}".format(self.rows[tuples[0]][tuples[1]])
+			else :
+				print(" |\n | {}".format(self.rows[tuples[0]][tuples[1]])
+				i+=1
+		print(' |\n')
 
 
 """
