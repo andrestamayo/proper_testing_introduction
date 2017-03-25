@@ -17,7 +17,16 @@ class Matrix(object):
 
 	def indices_generator(self):
 		#Task2
+<<<<<<< HEAD
 		pass
+=======
+		list_indices = []
+		for i in range(self.shape[0]):
+			for j in range(self.shape[1]):
+				list_indices.append((i,j))
+		return list_indices
+
+>>>>>>> b_2
 
 	def apply(self, fun, **kwargs):
 		#Task3
