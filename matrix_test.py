@@ -50,7 +50,7 @@ class MyTest2(unittest.TestCase):
 		self.assertEqual(self.m3.rows[1][0],0.75)
 		self.assertEqual(self.m3.rows[1][1],1.0)
 
-	"""def test_add(self):
+	def test_add(self):
 		m4 = self.m1+2
 		m5 = self.m1+self.m2
 		self.assertEqual(m4.rows[0][0],3)
@@ -73,7 +73,7 @@ class MyTest2(unittest.TestCase):
 
 	def test_string(self):
 		str_m = str(self.m5)
-		self.assertEqual(str_m,"|1 2 4|\n|0 0 0|\n")"""
+		self.assertEqual(str_m,"|1 2 4|\n|0 0 0|\n")
 
 if __name__ == '__main__':
 	unittest.main()
