@@ -3,7 +3,9 @@ from copy import copy
 class Matrix(object):
 	def __init__(self, *args):
 		#Task1
-		self.rows= args
+		self.rows=[]		
+		for elem in args:		
+			self.rows.append(elem)
 		e=0
 		i=0
 		i=len(self.rows)
@@ -36,12 +38,11 @@ class Matrix(object):
 	def __str__(self):
 		#Task6
 		# return the string representation
-		return str(self.shape)
 		pass
 
-#if __name__ == '__main__':
-m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
-print(m1)	
+if __name__ == '__main__':
+	m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
+	print(m1)	
 
 """
 The output of those lines:
