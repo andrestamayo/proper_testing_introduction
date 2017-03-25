@@ -26,19 +26,21 @@ class Matrix(object):
 
 	def apply(self, fun, **kwargs):
 		#Task3
-		# must use inidices_generator (task2)
-		pass
-
+		# must use indices_generator (task2)
+		for elem in self.indices_generator():
+        		self.rows[elem[0]][elem[1]]=fun(self.rows[elem[0]][elem[1]])
+	
 	def __add__(self, m):
 		#Task4
 		# must use apply (task3)
-		pass
+        	pass
 
 	@property
 	def transpose(self):
 		#Task5
 		# transpose the matrix
 		pass
+
 
 	def __str__(self):
 		#Task6
@@ -48,6 +50,7 @@ class Matrix(object):
 if __name__ == '__main__':
 	m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
 	print(m1)	
+
 
 """
 The output of those lines:
@@ -59,7 +62,11 @@ print m2
 m3= m1+m2
 print m3
 print m2
+<<<<<<< HEAD
 print m1+3
+=======
+print m1+3  
+>>>>>>> b_3
 print m1.transpose
 
 Should be following:

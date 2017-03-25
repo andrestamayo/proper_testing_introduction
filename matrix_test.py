@@ -41,16 +41,16 @@ class MyTest2(unittest.TestCase):
 		gen_exp = [(0,0),(0,1),(1,0),(1,1)]
 		self.assertListEqual(gen, gen_exp)
 
-	"""def test_apply(self):
-		def divide_by_three(x,i,j):
+	def test_apply(self):
+		def divide_by_four(x):
 			return x/4.0
-		self.m3.apply(divide_by_three)
+		self.m3.apply(divide_by_four)
 		self.assertEqual(self.m3.rows[0][0],0.25)
 		self.assertEqual(self.m3.rows[0][1],0.50)
 		self.assertEqual(self.m3.rows[1][0],0.75)
 		self.assertEqual(self.m3.rows[1][1],1.0)
 
-	def test_add(self):
+	"""def test_add(self):
 		m4 = self.m1+2
 		m5 = self.m1+self.m2
 		self.assertEqual(m4.rows[0][0],3)
