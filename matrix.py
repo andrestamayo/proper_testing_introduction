@@ -4,7 +4,7 @@ class Matrix(object):
 	def __init__(self, *args):
 		#Task1
 
-		if(len(arg!=1)):
+		if(len(arg)!=1):
 			self.rows= args
 			e=0
 			i=0
@@ -12,13 +12,12 @@ class Matrix(object):
 			e=len(args[0])
 			self.shape=(i,e)
 		else:
-			r=0
-			for elem in args:
-				for elemm in elem:
-					pass
-			self.rows[r]=elem[r]
-			r=r+1
-				pass
+			self.rows= args[0]
+			e=0
+			i=0
+			i=len(self.rows)
+			e=len(args[0][0])
+			self.shape=(i,e)	
 
 
 	def indices_generator(self):
