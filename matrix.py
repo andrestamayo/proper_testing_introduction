@@ -9,17 +9,23 @@ class Matrix(object):
 			.rows = coefficients of the matrix
 			.shape = dimension of the matrix
 
-		There is still the problem of a list of a list to solve [[...],[...],[...]]
+		A vector (1xN matrix) has to be init with [[...]]
 		"""
 		#Task1
-		self.rows=[]		
-		for elem in args:		
-			self.rows.append(elem)
-		e=0
-		i=0
-		i=len(self.rows)
-		e=len(args[0])
-		self.shape=(i,e)
+		if(len(args)!=1):
+			self.rows= args
+			e=0
+			i=0
+			i=len(self.rows)
+			e=len(args[0])
+			self.shape=(i,e)
+		else:
+			self.rows= args[0]
+			e=0
+			i=0
+			i=len(self.rows)
+			e=len(args[0][0])
+			self.shape=(i,e)
 		pass
 
 	def indices_generator(self):
@@ -71,14 +77,14 @@ class Matrix(object):
 				new_rows.append([0]*self.shape[1])
 			for tuples in self.indices_generator() :
 				new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m.rows[tuples[0]][tuples[1]]
-			return Matrix(*new_rows)#creation of a new matrix with the good coefficients
+			return Matrix(new_rows)#creation of a new matrix with the good coefficients
 		else: #if one matrix + one scalar
 			new_rows = [] #list with new coefficients
 			for i in range(self.shape[0]):#initialisation of the size of matrix
 				new_rows.append([0]*self.shape[1])
 			for tuples in self.indices_generator() :
 				new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m
-			return Matrix(*new_rows)#creation of a new matrix with the good coefficients
+			return Matrix(new_rows)#creation of a new matrix with the good coefficients
         	pass
 
 	@property
@@ -91,11 +97,11 @@ class Matrix(object):
 		#Task5
 		# transpose the matrix
 		new_rows = [] #list with new coefficients
-		for i in range(self.shape[0]): #initialisation of the size of matrix
-			new_rows.append([0]*self.shape[1])
+		for i in range(self.shape[1]): #initialisation of the size of matrix
+			new_rows.append([0]*self.shape[0])
 		for tuples in self.indices_generator() :
-			new_rows[tuples[0]][tuples[1]]=self.rows[tuples[1]][tuples[0]]
-		return Matrix(*new_rows) #creation of a new matrix with the good coefficients
+			new_rows[tuples[1]][tuples[0]]=self.rows[tuples[0]][tuples[1]]
+		return Matrix(new_rows) #creation of a new matrix with the good coefficients
 		pass
 
 	def __str__(self):
@@ -120,14 +126,20 @@ class Matrix(object):
 
 if __name__ == '__main__':
 	m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
-	m2 = Matrix([1,1,3],[1,1,3],[0,0,3])
+	m2 = Matrix([[1,1,3],[1,1,3],[0,0,3]])
+	m4 = Matrix([[3, 3, 3]])
+	m5 = Matrix([2],[2],[2])
 	print m1
 	print m2
+	print m4
+	print m5
 	m3= m1+m2
 	print m3
 	print m2
 	print m1+3
 	print m1.transpose
+	print m4.transpose
+	print m5.transpose
 
 
 """
