@@ -12,14 +12,14 @@ class Matrix(object):
 		A vector (1xN matrix) has to be init with [[...]]
 		"""
 		#Task1
-		if(len(args)!=1):
+		if(len(args)!=1): #if arguments are given list by list
 			self.rows= args
 			e=0
 			i=0
 			i=len(self.rows)
 			e=len(args[0])
 			self.shape=(i,e)
-		else:
+		else: #if arguments are given by a list containing lists
 			self.rows= args[0]
 			e=0
 			i=0
