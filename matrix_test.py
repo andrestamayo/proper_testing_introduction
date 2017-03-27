@@ -69,3 +69,5 @@ class MyTest2(unittest.TestCase):
 	def test_string(self):
 		str_m = str(self.m5)
 		self.assertEqual(str_m,"|1 2 4|\n|0 0 0|\n")
+		
+unittest.main()

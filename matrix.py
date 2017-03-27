@@ -9,12 +9,10 @@ class Matrix(object):
 
     def __init__(self, *args):
         #Task1
-        if len(args) == 1:  # if the argument is 1 list of lists
+        if len(args) == 1 and type(args[0][0]) == list:  # if the argument is 1 list of lists and not a vector
             args = args[0]  # replace with the values of this list as new arguments
-        self.rows = []
-        for i in range(len(args)):  # for every argument
-            self.rows.append(args[i])  # add this to the matrix.rows[] one by one
-        self.shape = (len(args),len(args[0]))
+        self.rows = args
+       	self.shape = (len(args),len(args[0]))
         pass
 
     def indices_generator(self):
@@ -86,13 +84,16 @@ class Matrix(object):
 # restored as it was. please do not change original instructions.
 m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
 m2 = Matrix([[1,1,3],[1,1,3],[0,0,3]])
+m4 = Matrix([3,3,3])
 print m1
 print m2
-m3= m1+m2
+print m4
+print m4.shape
+"""m3= m1+m2
 print m3
 print m2
 print m1+3
-print m1.transpose
+print m1.transpose"""
 
 """
 The output of those lines:
