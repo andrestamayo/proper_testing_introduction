@@ -8,24 +8,12 @@ class Matrix(object):
 		Output:
 			.rows = coefficients of the matrix
 			.shape = dimension of the matrix
-
-		A vector (1xN matrix) has to be init with [[...]]
 		"""
 		#Task1
-		if(len(args)!=1): #if arguments are given list by list
-			self.rows= args
-			e=0
-			i=0
-			i=len(self.rows)
-			e=len(args[0])
-			self.shape=(i,e)
-		else: #if arguments are given by a list containing lists
-			self.rows= args[0]
-			e=0
-			i=0
-			i=len(self.rows)
-			e=len(args[0][0])
-			self.shape=(i,e)
+		if len(args) == 1 and type(args[0][0]) == list:  # if the argument is 1 list of lists and not a vector
+            		args = args[0]  # replace with the values of this list as new arguments
+        	self.rows = args
+       		self.shape = (len(args),len(args[0]))
 		pass
 
 	def indices_generator(self):
@@ -79,12 +67,16 @@ class Matrix(object):
 				new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m.rows[tuples[0]][tuples[1]]
 			return Matrix(new_rows)#creation of a new matrix with the good coefficients
 		else: #if one matrix + one scalar
-			new_rows = [] #list with new coefficients
-			for i in range(self.shape[0]):#initialisation of the size of matrix
-				new_rows.append([0]*self.shape[1])
-			for tuples in self.indices_generator() :
-				new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m
-			return Matrix(new_rows)#creation of a new matrix with the good coefficients
+			try:
+				new_rows = [] #list with new coefficients
+				for i in range(self.shape[0]):#initialisation of the size of matrix
+					new_rows.append([0]*self.shape[1])
+				for tuples in self.indices_generator() :
+					new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m
+			except TypeError:#if incompatible type raise exception
+				print("Incompatible type for addition")
+			else:
+				return Matrix(new_rows)#creation of a new matrix with the good coefficients
         	pass
 
 	@property
@@ -127,8 +119,8 @@ class Matrix(object):
 if __name__ == '__main__':
 	m1 = Matrix([1,2,1],[3,3,3],[5,5,5])
 	m2 = Matrix([[1,1,3],[1,1,3],[0,0,3]])
-	m4 = Matrix([[3, 3, 3]])
-	m5 = Matrix([2],[2],[2])
+	m4 = Matrix([3, 3, 3])
+	m5 = Matrix([[2],[2],[2]])
 	print m1
 	print m2
 	print m4
@@ -136,7 +128,7 @@ if __name__ == '__main__':
 	m3= m1+m2
 	print m3
 	print m2
-	print m1+3
+	print m1+3.4
 	print m1.transpose
 	print m4.transpose
 	print m5.transpose
