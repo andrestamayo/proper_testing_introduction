@@ -133,7 +133,6 @@ if __name__ == '__main__':
 	print m4.transpose
 	print m5.transpose
 
-
 """
 The output of those lines:
 
