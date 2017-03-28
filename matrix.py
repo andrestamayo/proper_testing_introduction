@@ -1,4 +1,4 @@
-from copy import copy
+from copy import deepcopy #to copy an object with its attributs
 
 class Matrix(object):
 	def __init__(self, *args):
@@ -31,20 +31,17 @@ class Matrix(object):
 		pass
 
 	def apply(self, fun, **kwargs):
-		""" Apply a function to every coefficients or specific coefficients
+		""" Apply a function
 		Input:
 			fun = function to apply
-			**kwargs = specific coefficients to change 
+			**kwargs = parameters of fun 
 		Output:
-			
-		
-		There is the case if kwargs is specified and correspond to specific coefficients		
+					
 		"""
 		#Task3
 		# must use indices_generator (task2)
-		if len(kwargs) == 0:
-			for elem in self.indices_generator():
-        			self.rows[elem[0]][elem[1]]=fun(self.rows[elem[0]][elem[1]])			
+		for elem in self.indices_generator():
+        		self.rows[elem[0]][elem[1]]=fun(self.rows[elem[0]][elem[1]],**kwargs)			
 		pass
 	
 	def __add__(self, m):
@@ -60,31 +57,28 @@ class Matrix(object):
 		#Task4
 		# must use apply (task3)
 		if type(self)==type(m):	#if sum of two matrices	
-			new_rows = [] #list with new coefficients
-			for i in range(self.shape[0]):#initialisation of the size of matrix
-				new_rows.append([0]*self.shape[1])
+			result = deepcopy(self)
 			for tuples in self.indices_generator() :
-				new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m.rows[tuples[0]][tuples[1]]
-			return Matrix(new_rows)#creation of a new matrix with the good coefficients
+				result.rows[tuples[0]][tuples[1]]+=m.rows[tuples[0]][tuples[1]]
+			return result
 		else: #if one matrix + one scalar
 			try:
-				new_rows = [] #list with new coefficients
-				for i in range(self.shape[0]):#initialisation of the size of matrix
-					new_rows.append([0]*self.shape[1])
-				for tuples in self.indices_generator() :
-					new_rows[tuples[0]][tuples[1]]=self.rows[tuples[0]][tuples[1]]+m
+				result = deepcopy(self)
+				def functionadd(x,a=m):
+					return x+a
+				result.apply(functionadd,a=m)
 			except TypeError:#if incompatible type raise exception
 				print("Incompatible type for addition")
 			else:
-				return Matrix(new_rows)#creation of a new matrix with the good coefficients
+				return result
         	pass
 
 	@property
 	def transpose(self):
-		""" Transpose a matrix
+		""" Transpose a (N*M) matrix
 		Input:
 		Output:
-			transposed matrix
+			transposed (M*N) matrix
 		"""
 		#Task5
 		# transpose the matrix
@@ -125,13 +119,18 @@ if __name__ == '__main__':
 	print m2
 	print m4
 	print m5
-	m3= m1+m2
+	m3 = m1+m2
 	print m3
 	print m2
-	print m1+3.4
+	print m1+0.1
 	print m1.transpose
 	print m4.transpose
 	print m5.transpose
+	
+	m6 = Matrix(['Czesc','Hey'],['Salut','Ola'])
+	print m6
+	print m6+" Bob"
+	print m6.transpose
 
 """
 The output of those lines:
