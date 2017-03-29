@@ -31,7 +31,7 @@ class Matrix(object):
 		pass
 
 	def apply(self, fun, **kwargs):
-		""" Apply a function
+		""" Apply a function directly on the input matrix
 		Input:
 			fun = function to apply
 			**kwargs = parameters of fun 
@@ -50,9 +50,6 @@ class Matrix(object):
 			m = second member of the operation. It can be another matrix or a scalar
 		Output:
 			result of operation
-		
-		Try to find how to use apply
-		Raise an error if the type is not correct
 		"""
 		#Task4
 		# must use apply (task3)
@@ -128,8 +125,9 @@ if __name__ == '__main__':
 	print m5.transpose
 	
 	m6 = Matrix(['Czesc','Hey'],['Salut','Ola'])
+	m7 = Matrix(['Andres','Hector'],['Chrystos','Kim'])
 	print m6
-	print m6+" Bob"
+	print m6+" "+m7
 	print m6.transpose
 
 """
